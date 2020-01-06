@@ -29,16 +29,30 @@ public class MergeSortService {
 
     private void merge(int[] inputs, int start, int end, int middle) {
         int[] tmpList = new int[10];
-        for(int i = 0; i < end - start; i++) {
-            if(i + middle > end) {
-                tmpList[i + start] = inputs[i + start];
+        int firstYb = start;
+        int secondYb = middle + 1;
+        for(int i = 0; i <= end - start; i++) {
+
+            if(firstYb > middle) {
+                tmpList[i] = inputs[secondYb++];
+                continue;
             }
 
-            if(inputs[i + start] < inputs[i + middle]) {
-                tmpList[i + start] = inputs[i + start];
-            } else {
-                tmpList[i + start] = inputs[i + middle];
+            if(secondYb > end) {
+                tmpList[i] = inputs[firstYb++];
+                continue;
             }
+
+            if(inputs[firstYb] < inputs[secondYb]) {
+                tmpList[i] = inputs[firstYb++];
+            } else {
+                tmpList[i] = inputs[secondYb++];
+            }
+        }
+
+        int num = end - start;
+        for(int i = 0; i <= num; i++) {
+            inputs[start++] = tmpList[i];
         }
     }
 }
