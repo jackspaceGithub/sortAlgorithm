@@ -1,4 +1,4 @@
-package com.algorithm.sort;
+package com.algorithm.sort.ONLogN;
 
 import java.util.Stack;
 

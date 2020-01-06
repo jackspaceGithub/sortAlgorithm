@@ -1,7 +1,6 @@
 package com.algorithm.sort;
 
-
-import com.algorithm.sort.ONLogN.FastSortService;
+import com.algorithm.sort.ON2.BubblingSortService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,15 +8,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FastSortTest {
+public class BubblingSortTest {
 
     @Test
     public void test() {
-        FastSortService service = new FastSortService();
         int[] inputs = {2,3,5,6,1,0};
-        service.fastSortRecursion(inputs, 0, inputs.length - 1);
+        BubblingSortService sortService = new BubblingSortService();
+        sortService.sort(inputs, 0, 5);
         for(int i=0; i < inputs.length; i++) {
-            System.out.println(inputs[i]);
+            System.out.print(inputs[i]);
         }
+        System.out.println();
     }
 }
