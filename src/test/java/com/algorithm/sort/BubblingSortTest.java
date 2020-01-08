@@ -20,4 +20,26 @@ public class BubblingSortTest {
         }
         System.out.println();
     }
+
+    @Test
+    public void test2() {
+        int[] inputs = {3,2,6,5,7,8};
+        BubblingSortService sortService = new BubblingSortService();
+        sortService.sortBetter1(inputs, 0, 5);
+        for(int i=0; i < inputs.length; i++) {
+            System.out.print(inputs[i]);
+        }
+        System.out.println();
+    }
+
+    @Test
+    public void test3() {
+        int[] inputs = {3,2,6,5,7,8};
+        BubblingSortService sortService = new BubblingSortService();
+        sortService.sortBetter2(inputs, 0, 5);
+        for(int i=0; i < inputs.length; i++) {
+            System.out.print(inputs[i]);
+        }
+        System.out.println();
+    }
 }
