@@ -44,18 +44,18 @@ public class BubblingSortService {
      * @param inputList
      */
     public void sortBetter1(int inputList[], int start, int end) {
-        // 记录交换发生与否
-        boolean change = true;
+
         for(int i = start; i <= end; i++) {
             int end2 = end - i;
+            // 记录交换发生与否
+            boolean change = false;
             for(int i2 = 0; i2 <= end2; i2++) {
                 if(i2 + 1 > end2) continue;
                 if(inputList[i2] > inputList[i2 + 1]) {
                     int tmp = inputList[i2];
                     inputList[i2] = inputList[i2 + 1];
                     inputList[i2 + 1] = tmp;
-                } else {
-                    change = false;
+                    change = true;
                 }
             }
 
@@ -68,14 +68,14 @@ public class BubblingSortService {
      * @param inputList
      */
     public void sortBetter2(int inputList[], int start, int end) {
-        // 记录交换发生与否
-        boolean change = true;
         // 上一轮最后一次交换的位置，也就是无序区边界
         int changePlace = end;
         for(int i = start; i <= end; i++) {
             int end2 = end - i;
             // 当前轮最后一次交换的位置
             int changePlaceTmp = end2;
+            // 记录交换发生与否
+            boolean change = false;
             for(int i2 = 0; i2 <= end2; i2++) {
                 if(i2 + 1 > end2) continue;
                 // 如果遍历到上一轮最后一次交换的位置，跳出
@@ -85,8 +85,7 @@ public class BubblingSortService {
                     inputList[i2] = inputList[i2 + 1];
                     inputList[i2 + 1] = tmp;
                     changePlaceTmp = i2 + 1;
-                } else {
-                    change = false;
+                    change = true;
                 }
             }
             changePlace = changePlaceTmp;
@@ -97,29 +96,34 @@ public class BubblingSortService {
     /**
      * 把 优化版本的冒泡2 美化一下
      */
-    public void sortBetter2Beautiful(int inputList[], int start, int end) {
-        // 记录交换发生与否
-        boolean change = true;
-        // 上一轮最后一次交换的位置，也就是无序区边界
-        int changePlace = end;
-        for(int i = start; i <= end; i++) {
-            int end2 = end - i;
-            // 当前轮最后一次交换的位置
-            int changePlaceTmp = end2;
-            for(int i2 = 0; i2 <= changePlace; i2++) {
-                if(i2 + 1 > end2) continue;
-                if(inputList[i2] > inputList[i2 + 1]) {
-                    int tmp = inputList[i2];
-                    inputList[i2] = inputList[i2 + 1];
-                    inputList[i2 + 1] = tmp;
-                    changePlaceTmp = i2 + 1;
-                } else {
-                    change = false;
+    public void sortBetter2Beautiful(int[] inputs) {
+
+        // 上一次发生交换的位置
+        int lastChangeIndex = inputs.length - 1;
+        // 无序区边界值
+        int disorderBoundaryIndex = inputs.length - 1;
+        for(int i=0; i < inputs.length; i++) {
+
+            // 是否发生了交换
+            boolean isChangeHappend = false;
+            // 从左到右侧
+            for(int i2=0; i2 <= disorderBoundaryIndex; i2++) {
+                if(i2+1 <= disorderBoundaryIndex && inputs[i2] > inputs[i2+1]) {
+                    int tmp = inputs[i2];
+                    inputs[i2] = inputs[i2 + 1];
+                    inputs[i2 + 1] = tmp;
+                    lastChangeIndex = i2;
+                    isChangeHappend = true;
                 }
             }
-            changePlace = changePlaceTmp;
-            if(!change) break;
+
+            disorderBoundaryIndex = lastChangeIndex;
+
+            if(!isChangeHappend) {
+                break;
+            }
         }
     }
+
 
 }
